@@ -13,6 +13,14 @@ public class Application {
 		while (isFinish == false) {
 			System.out.println("숫자를 입력해주세요 : ");
 			input = scanner.nextLine();
+			
+			try {
+				exception(input);
+			}
+			catch (IllegalArgumentException e) {
+				System.out.println(e.toString());
+				continue;
+			}
 
 			char[] charInput = input.toCharArray(); // input값을 char배열로
 
@@ -56,7 +64,9 @@ public class Application {
 			// if 4 - (볼만 있는 경우)
 
 			// if 5(낫싱)
-		}
+		}//end while
+		
+		
 
 	}// end main
 
@@ -218,5 +228,22 @@ public class Application {
 		}
 		return checkZero;
 	}//랜덤하게 받은 Ans값이 중복된 숫자면 0을 반환
+	
+	public static void exception(String a) throws IllegalArgumentException {
+		if (a.length() > 3) {
+			throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
+		}
+		
+		char[] charArr = a.toCharArray();
+		
+		for(int i = 0; i < charArr.length; i ++) {
+			if(Character.isDigit(charArr[i]) == false) {
+				throw new IllegalArgumentException("숫자만 입력해 주세요");
+			}
+		}
+		
+		
+		
+	}
 
 }// end class Application
