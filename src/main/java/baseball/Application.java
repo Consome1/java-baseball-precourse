@@ -6,6 +6,21 @@ import utils.RandomUtils;
 public class Application {
 	public static void main(String[] args) {
 		final Scanner scanner = new Scanner(System.in);
+		int finish = 1;
+
+		while (finish == 1) {
+			game();
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			finish = scanner.nextInt();
+			if (finish == 2) {
+				break;
+			}
+		}
+
+	}// end main
+
+	public static void game() {
+		final Scanner scanner = new Scanner(System.in);
 		boolean isFinish = false;
 		String input;
 		char[] charAns = getAnswer();
@@ -13,18 +28,17 @@ public class Application {
 		while (isFinish == false) {
 			System.out.println("숫자를 입력해주세요 : ");
 			input = scanner.nextLine();
-			
+
 			try {
 				exception(input);
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				System.out.println(e.toString());
 				continue;
 			}
 
 			char[] charInput = input.toCharArray(); // input값을 char배열로
 
-			// 확인
+			/* 
 			System.out.println("인풋값 :");
 			for (int i = 0; i < 3; i++) {
 				System.out.printf("%c ", charInput[i]);
@@ -33,7 +47,8 @@ public class Application {
 			System.out.println("정답 :");
 			for (int i = 0; i < 3; i++) {
 				System.out.printf("%c ", charAns[i]);
-			} // 정답과 인풋 확인
+			} */
+			//정답, 인풋값 확인
 
 			switch (hint(charInput, charAns)) {
 			case 1:
@@ -47,28 +62,16 @@ public class Application {
 				System.out.printf("%d볼 %d스트라이크 \n", ballNum(charInput, charAns), strikeNum(charInput, charAns));
 				break;
 			case 4:
-				System.out.printf("%d볼", ballNum(charInput, charAns));
+				System.out.printf("%d볼\n", ballNum(charInput, charAns));
 				break;
 			case 5:
 				System.out.println("낫싱");
 				break;
-
 			}
 
-			// if 1 - (3개다맞힘)
+		}
 
-			// if 2 - (스트라이크만 있는 경우)
-
-			// if 3 - (볼, 스트라이크 둘다 있는 경우)
-
-			// if 4 - (볼만 있는 경우)
-
-			// if 5(낫싱)
-		}//end while
-		
-		
-
-	}// end main
+	}// end game
 
 	public static int hint(char[] pCharInput, char[] pCharAns) {
 		int count = 0;
@@ -201,17 +204,16 @@ public class Application {
 	public static char[] getAnswer() {
 		boolean isSame = true;
 		char[] charAns = new char[3];
-		
-		while(isSame) {
+
+		while (isSame) {
 			int answer = RandomUtils.nextInt(100, 1000);
 			String strAns = Integer.toString(answer);
 			charAns = strAns.toCharArray(); // ans값을 char 배열로
-			
+
 			if (checkAns(charAns) != 0) {
 				isSame = false;
 			}
-		}//3개의 숫자가 중복되지 않을때까지 반복
-		
+		} // 3개의 숫자가 중복되지 않을때까지 반복
 
 		return charAns;
 	} // Answer 받기
@@ -227,23 +229,19 @@ public class Application {
 			}
 		}
 		return checkZero;
-	}//랜덤하게 받은 Ans값이 중복된 숫자면 0을 반환
-	
+	}// 랜덤하게 받은 Ans값이 중복된 숫자면 0을 반환
+
 	public static void exception(String a) throws IllegalArgumentException {
-		if (a.length() > 3) {
+		if (a.length() != 3) {
 			throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
 		}
-		
+
 		char[] charArr = a.toCharArray();
-		
-		for(int i = 0; i < charArr.length; i ++) {
-			if(Character.isDigit(charArr[i]) == false) {
+
+		for (int i = 0; i < charArr.length; i++) {
+			if (Character.isDigit(charArr[i]) == false) {
 				throw new IllegalArgumentException("숫자만 입력해 주세요");
 			}
 		}
-		
-		
-		
 	}
-
 }// end class Application
