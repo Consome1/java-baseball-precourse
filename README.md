@@ -2,15 +2,16 @@
 
 ## 구현목록
 
-
-
-#### Game
+#### Application
 
 * 게임 시작
 
-#### Answer
+#### RandomUtils
 
-* 서로 다른 임의의 3자리숫자 생성
+* 임의의 3자리숫자 생성
+
+#### Answer
+* RandomUtils에서 받은 숫자가 서로 다른지 판별
 
 #### Console
 
