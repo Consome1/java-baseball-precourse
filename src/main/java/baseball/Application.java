@@ -2,6 +2,7 @@ package baseball;
 
 import java.util.Scanner;
 
+import utils.BaseballConsole;
 import utils.RandomUtils;
 
 public class Application {
