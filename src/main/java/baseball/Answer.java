@@ -1,7 +1,31 @@
 package baseball;
 
+import utils.RandomUtils;
+
 public class Answer {
-    public int answer(int input) {
+
+    public int answer() {
+        int returnAns = 0;
+        boolean isTrue = true;
+        while(isTrue) {
+            returnAns = RandomUtils.nextInt(100,1000);
+            if (isSame(returnAns) == 1) {
+                isTrue = false;
+            }
+        }
+        return returnAns;
+    }//end answer
+
+    public char[] charAns() {
+        int intAns = answer();
+        String strAns = Integer.toString(intAns);
+        char[] charAns = strAns.toCharArray();
+
+        return charAns;
+    }
+
+
+    public static int isSame(int input) {
         String strAns = Integer.toString(input);
         char[] charAns = strAns.toCharArray();
         int isEqual = 0;

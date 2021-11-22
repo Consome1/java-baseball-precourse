@@ -13,13 +13,15 @@ public class Application {
 
     public static void game() {
         Answer ans = new Answer();
-        boolean istrue = true;
+        char[] answer;
 
-        while (istrue) {
-            int check = ans.answer(RandomUtils.nextInt(100, 1000));
-            if (check == 1) {
-                istrue = false;
-            }
+        boolean isTrue = true;
+
+        while (isTrue) {
+            answer = ans.charAns();
+            System.out.println(answer);
+
+            break;
         }
 
 
